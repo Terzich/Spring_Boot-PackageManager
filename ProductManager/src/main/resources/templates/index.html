@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Product Manager</title>
@@ -7,6 +9,13 @@
 <body>
 
     <div align="center">
+        <div sec:authorize="isAuthenticated()">
+            Welcome <span sec:authentication="name">Username</span>
+            <span sec:authentication="principal.authorities">Roles</span>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Logout">
+            </form>
+        </div>
         <h1>Product Manager</h1>
         <a href="new">Create New Product</a>
         <br><br>
@@ -18,7 +27,7 @@
                     <th>Brand</th>
                     <th>Made In</th>
                     <th>Price</th>
-                    <th>Actions</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Actions</th>
                 </tr>
 
             </thead>
@@ -29,7 +38,7 @@
                     <td th:text="${product.brand}">Brand</td>
                     <td th:text="${product.madein}">Made In</td>
                     <td th:text="${product.price}">Price</td>
-                    <td>
+                    <td sec:authorize="hasAuthority('ADMIN')">
                         <a th:href="@{'/edit/' + ${product.Id}}">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <a th:href="@{'/delete/' + ${product.Id}}">Delete</a>
