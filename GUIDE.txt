@@ -1,0 +1,4 @@
+- Prije samog pokretanja aplikacije, potrebno je da napravite mysql bazu sa imenom " productmanager " !
+
+- Nakon toga pokrenite vas editor i u fajlu application.properities promijenite atribute " spring.datasource.username " i " spring.datasource.password " 
+na kredencijale od vaseg lokalnog mysql servera.
