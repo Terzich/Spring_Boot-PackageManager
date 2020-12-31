@@ -4,21 +4,113 @@
     <meta charset="UTF-8">
     <title>Registration</title>
 </head>
+<style>
+
+
+    body{
+    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+    }
+    .maindiv{
+    text-align:center;
+    padding:25px;
+    margin:auto;
+    margin-top:250px;
+
+    }
+    form{
+    padding:20px;
+    width:50%;
+    margin:auto;
+    background-color:transparent;
+     border-radius: 20px;
+
+    }
+
+     button{
+        padding:10px;
+        width:25%;
+        background-color:blue;
+        color:white;
+
+    }
+    .inputi{
+       padding:15px;
+        width:50%;
+        margin:auto;
+
+    }
+    .inputi label{
+        font-weight:bold;
+        color:white;
+    }
+     .inputi input{
+        width:50%;
+        border:0;
+        border-bottom: 2px solid blue;
+        background: transparent;
+        height:30px;
+        text-align:center;
+        font-weight:bold;
+
+
+    }
+    .greska{
+     color:darkred;
+
+    }
+    .odjava{
+
+             color:green;
+
+    }
+
+</style>
+
+
+
 <body>
 <form role="form" th:action="@{/signup}" th:method="post" th:object="${user}">
-    <lable>Name</lable>
-    <input type="text" id="name" name="name" th:field="*{username}">
 
-    <!--<lable>Surname</lable>
-    <input type="text" id="surname" name="surname" th:field="*{surname}">
+    <h1 style="text-align:center; color:indigo; font-style: oblique;">PRODUCT MANAGER</h1>
+    <div class="maindiv">
 
-    <lable>Email</lable>
-    <input type="text" id="email" name="email" th:field="*{email}">
--->
-    <lable>Password</lable>
-    <input type="password" id="password" name="password" th:field="*{password}">
 
-    <input type="submit">
+        <form name="f" th:action="@{/login}" method="post">
+            <h2 style="color:white">Register your account to use product manager</h2><br>
+            <div th:if="${param.error}" class="greska">
+                Invalid username and password!
+            </div>
+            <div th:if="${param.logout}" class="odjava">
+                You have been logged out!
+            </div>
+            <div class="inputi">
+
+                <label for="name" class="col-form-label col-4">Username:</label>
+                <div class="col-8">
+                    <input type="text" id="name" name="name" th:field="*{username}"><br>
+                </div>
+
+
+            </div>
+            <div class="inputi">
+
+                <label for="password" class="col-form-label col-4">Password:</label>
+                <div class="col-8">
+                    <input type="password" id="password" name="password" th:field="*{password}"><br>
+                </div>
+            </div>
+
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Create account</button>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
 </form>
 </body>
 </html>

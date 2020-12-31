@@ -4,45 +4,131 @@
     <meta charset="UTF-8">
     <title>Edit Product</title>
 </head>
+
+
+<style>
+
+
+    body{
+    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+    }
+    .maindiv{
+    text-align:center;
+    padding:25px;
+    margin:auto;
+    margin-top:150px;
+
+    }
+    form{
+    padding:20px;
+    width:50%;
+    margin:auto;
+    background-color:transparent;
+     border-radius: 20px;
+
+    }
+
+     button{
+        padding:10px;
+        width:25%;
+        background-color:blue;
+        color:white;
+
+    }
+    .inputi{
+       padding:15px;
+        width:50%;
+        margin:auto;
+
+    }
+    .inputi label{
+        font-weight:bold;
+        color:white;
+    }
+     .inputi input{
+        width:50%;
+        border:0;
+        border-bottom: 2px solid blue;
+        background: transparent;
+        height:30px;
+        text-align:center;
+        font-weight:bold;
+
+
+    }
+    .greska{
+     color:darkred;
+
+    }
+    .odjava{
+
+             color:green;
+
+    }
+
+</style>
 <body>
-    <div align="center">
-        <h1>Edit Product</h1>
+
+    <h1 style="text-align:center; color:indigo; font-style: oblique;">PRODUCT MANAGER</h1>
+    <div class="maindiv">
+        <h1 style="color:white;">Edit product</h1>
         <br>
+
         <form action="#" th:action="@{/save}" th:object="${product}" method="post">
-            <table border="0" cellpadding="10">
-                <tr>
-                    <td>Product Id:</td>
-                    <td><input type="text" th:field="*{Id}" readonly="readonly"></td>
-                </tr>
-                <tr>
-                    <td>Product Name:</td>
-                    <td><input type="text" th:field="*{name}"></td>
-                </tr>
-                <tr>
-                    <td>Product Brand:</td>
-                    <td><input type="text" th:field="*{brand}"></td>
-                </tr>
-                <tr>
-                    <td>Made in:</td>
-                    <td><input type="text" th:field="*{madein}"></td>
-                </tr>
-                <tr>
-                    <td>Price:</td>
-                    <td><input type="text" th:field="*{price}"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <button type="submit">Save</button>
-                    </td>
-                </tr>
 
-            </table>
+            <div class="inputi">
 
+                <label for="productid" class="col-form-label col-4">Product Id:</label>
+                <div class="col-8">
+                    <input name="productid" id="productid" type="text" th:field="*{Id}" readonly="readonly"><br>
+                </div>
+
+
+            </div>
+
+            <div class="inputi">
+
+                <label for="productname" class="col-form-label col-4">Product name:</label>
+                <div class="col-8">
+                    <input name="productname" id="productname" type="text" th:field="*{name}"><br>
+                </div>
+
+
+            </div>
+            <div class="inputi">
+
+                <label for="productbrand" class="col-form-label col-4">Product brand:</label>
+                <div class="col-8">
+                    <input name="productbrand" id="productbrand" type="text" th:field="*{brand}"><br>
+                </div>
+            </div>
+            <div class="inputi">
+
+                <label for="madein" class="col-form-label col-4">Made in:</label>
+                <div class="col-8">
+                    <input name="madein" id="madein" type="text" th:field="*{madein}"><br>
+                </div>
+            </div>
+            <div class="inputi">
+
+                <label for="price" class="col-form-label col-4">Product price:</label>
+                <div class="col-8">
+                    <input name="price" id="price" type="number" th:field="*{price}"><br>
+                </div>
+            </div>
+
+
+            <div class="form-actions">
+                <button type="submit" class="btn">Edit product</button>
+            </div>
 
         </form>
 
     </div>
 
+
+
+    </form>
 
 </body>
 </html>

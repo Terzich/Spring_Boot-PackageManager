@@ -3,35 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
-    <link type="text/css" href="webjars/bootstrap/css/bootstrap.min.css" />
 </head>
+<style>
+
+
+    body{
+    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+    }
+    .maindiv{
+    text-align:center;
+    padding:25px;
+    margin:auto;
+    margin-top:250px;
+
+    }
+    form{
+    padding:20px;
+    width:50%;
+    margin:auto;
+    background-color:transparent;
+     border-radius: 20px;
+
+    }
+
+     button{
+        padding:10px;
+        width:25%;
+        background-color:blue;
+        color:white;
+
+    }
+    .inputi{
+       padding:15px;
+        width:50%;
+        margin:auto;
+
+    }
+    .inputi label{
+        font-weight:bold;
+        color:white;
+    }
+     .inputi input{
+        width:50%;
+        border:0;
+        border-bottom: 2px solid blue;
+        background: transparent;
+        height:30px;
+        text-align:center;
+        font-weight:bold;
+
+
+    }
+    .greska{
+     color:darkred;
+
+    }
+    .odjava{
+
+             color:green;
+
+    }
+
+</style>
 
 <body>
-
-
-<div class="container text-center">
+<h1 style="text-align:center; color:indigo; font-style: oblique;">PRODUCT MANAGER</h1>
+<div class="maindiv">
 
 
     <form name="f" th:action="@{/login}" method="post">
-
-            <div th:if="${param.error}" class="alert alert-error">
+            <h2 style="color:white">Log in to product manager</h2><br>
+            <div th:if="${param.error}" class="greska">
                 Invalid username and password!
             </div>
-            <div th:if="${param.logout}" class="alert alert-success">
+            <div th:if="${param.logout}" class="odjava">
                 You have been logged out!
             </div>
-        <div class="form-group row">
+        <div class="inputi">
 
-            <label for="username" class="col-form-label col-4">Username</label>
+            <label for="username" class="col-form-label col-4">Username:</label>
             <div class="col-8">
                 <input name="username" id="username" type="text"><br>
             </div>
 
 
         </div>
-        <div class="form-group row">
+        <div class="inputi">
 
-            <label for="password" class="col-form-label col-4">Password</label>
+            <label for="password" class="col-form-label col-4">Password:</label>
             <div class="col-8">
                 <input name="password" id="password" type="password">
             </div>
@@ -44,7 +103,7 @@
 
     </form>
     <br>
-    <h5>If you don't have created account, <a href="signup" class="btn btn-danger">Sign up</a>, now</h5>
+    <h3>If you don't have created account, <a href="signup" class="btn btn-danger">Sign up</a>, now!</h3>
 </div>
 
 </body>

@@ -6,20 +6,59 @@
     <meta charset="UTF-8">
     <title>Product Manager</title>
 </head>
-<body>
+<style>
+     body{
+    background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+    }
+    th,td{
+        padding:10px;
+        font-weight:bold;
+    }
+    #editbtn{
+        background-color:transparent;
+        color:orange;
+        padding:10px;
+        font-weight:bold;
+        text-decoration:none;
 
-    <div align="center">
-        <div sec:authorize="isAuthenticated()">
-            Welcome <span sec:authentication="name">Username</span>
-            <span sec:authentication="principal.authorities">Roles</span>
-            <form th:action="@{/logout}" method="post">
-                <input type="submit" value="Logout">
-            </form>
-        </div>
-        <h1>Product Manager</h1>
-        <a href="new">Create New Product</a>
-        <br><br>
-        <table border="1" cellpadding="10">
+    }
+#deletebtn{
+        background-color:transparent;
+        color:red;
+        padding:10px;
+        font-weight:bold;
+                text-decoration:none;
+
+
+    }
+    #createbtn{
+        background-color:green;
+        color:black;
+        padding:10px;
+        font-weight:bold;
+                text-decoration:none;
+
+
+    }
+    .maindiv{
+        margin-top:100px;
+
+    }
+</style>
+<body>
+<h1 style="text-align:center; color:indigo;">PRODUCT MANAGER</h1>
+
+<div sec:authorize="isAuthenticated()" align="center">
+    Welcome <span sec:authentication="name" style=" font-weight:bold; color:darkred;">Username</span>
+    <span sec:authentication="principal.authorities" style=" font-weight:bold; color:darkred;">Roles</span>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout" style="margin-top:5px; padding:5px;">
+    </form>
+</div>
+    <div align="center" class="maindiv">
+
+
+        <table border="1" cellpadding="10" style="background-color:white;">
             <thead>
                 <tr>
                     <th>Product ID</th>
@@ -39,9 +78,9 @@
                     <td th:text="${product.madein}">Made In</td>
                     <td th:text="${product.price}">Price</td>
                     <td sec:authorize="hasAuthority('ADMIN')">
-                        <a th:href="@{'/edit/' + ${product.Id}}">Edit</a>
+                        <a th:href="@{'/edit/' + ${product.Id}}" id="editbtn">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a th:href="@{'/delete/' + ${product.Id}}">Delete</a>
+                        <a th:href="@{'/delete/' + ${product.Id}}" id="deletebtn">Delete</a>
 
                     </td>
 
@@ -49,7 +88,8 @@
             </tbody>
 
         </table>
-
+        <br><br>
+        <a href="new" sec:authorize="hasAuthority('ADMIN')" id="createbtn">Create New Product</a>
     </div>
 
 </body>
