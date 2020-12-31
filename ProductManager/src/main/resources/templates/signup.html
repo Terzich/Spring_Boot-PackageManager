@@ -87,7 +87,7 @@
 
                 <label for="name" class="col-form-label col-4">Username:</label>
                 <div class="col-8">
-                    <input type="text" id="name" name="name" th:field="*{username}"><br>
+                    <input type="text" id="name" name="name" th:field="*{username}" required><br>
                 </div>
 
 
@@ -96,10 +96,13 @@
 
                 <label for="password" class="col-form-label col-4">Password:</label>
                 <div class="col-8">
-                    <input type="password" id="password" name="password" th:field="*{password}"><br>
+                    <input type="password" id="password" name="password" th:field="*{password}" required><br>
                 </div>
             </div>
-
+            <div class="inputi">
+                <label for="active" class="col-form-label col-4">Register as an administrator:</label>
+                <input type="checkbox" id="active" name="active" th:value="*{Enabled}" th:field="*{Enabled}" />
+            </div>
 
             <div class="form-actions">
                 <button type="submit" class="btn">Create account</button>

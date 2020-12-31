@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,6 +22,11 @@ public class AppController {
     @Autowired
     private UserDetailsServiceImpl userService;
 
+    @Autowired
+    private RoleService roleService;
+
+    public AppController() {
+    }
 
     @RequestMapping("/")
     public String viewHomePage(Model model){
@@ -72,17 +79,31 @@ public class AppController {
     public String signup(Model model){
         User user=new User();
         model.addAttribute("user",user);
+        model.addAttribute("checked",false);
+
+
+        var roleList=roleService.listAll();
+        if(roleList.size()==0){
+            Role admin=new Role();
+            admin.setName("ADMIN");
+            Role userr=new Role();
+            userr.setName("USER");
+            roleService.save(admin);
+            roleService.save(userr);
+        }
+
         return "signup";
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     String signup(@ModelAttribute("user") User user) {
+        if(user.isEnabled()==true)
+            userService.signUpUser(user,1);
+        else
+            userService.signUpUser(user,2);
 
-
-        userService.signUpUser(user);
 
         return "redirect:/login";
     }
-
 
 }

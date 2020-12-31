@@ -33,12 +33,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return new MyUserDetails(user);
     }
 
-    public void signUpUser(User user){
+    public void signUpUser(User user, int isAdmin){
         final String encryptedPassword=passwordEncoder.encode(user.getPassword());
         user.setPassword(encryptedPassword);
         user.setEnabled(true);
         Set<Role> roles=new HashSet<>();
-        roles.add(roleService.get(1));
+
+        roles.add(roleService.get(isAdmin));
+
+
         user.setRoles(roles);
         final User createdUser=userRepository.save(user);
     }
